@@ -2,12 +2,18 @@ const electron = require('electron');
 
 const { ipcMain } = require('electron');
 	
-const sqlite3 = require('sqlite3').verbose();
+const { 
+  ADD_NEW_ACCOUNT,
+  ADD_ACCOUNT_ERROR,
+  GET_ACCOUNTS,
+} = require('./lib/electron/ipcConstants');
 
 const { 
-    ADD_NEW_ACCOUNT,
-    ADD_ACCOUNT_ERROR 
-} = require('./lib/electron/ipcConstants');
+  addAccount,
+  getAccounts
+} = require('./lib/electron/ipcfunctions/accounts');
+
+
 // Module to control application life.
 const app = electron.app;
 // Module to create native browser window.
@@ -16,21 +22,16 @@ const BrowserWindow = electron.BrowserWindow;
 const path = require('path');
 const url = require('url');
 
-
-let db = new sqlite3.Database('./src/budget-js.sqlite3.db', sqlite3.OPEN_READWRITE, (err) => {
-  if (err) {
-    return console.error(err.message);
-  }
-  console.log('Connected DB');
+require('electron-reload')(__dirname, {
+    electron: path.join('./node_modules/.bin/electron')
 });
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
-
 function createWindow() {
     // Create the browser window.
-    mainWindow = new BrowserWindow({width: 800, height: 600});
+    let mainWindow = new BrowserWindow({width: 800, height: 600});
 
     // and load the index.html of the app.
     /*
@@ -54,27 +55,12 @@ function createWindow() {
         // when you should delete the corresponding element.
         mainWindow = null
     })
+    
 }
 
-ipcMain.on(ADD_NEW_ACCOUNT, (event, arg) => {
-    const sql = `
-    INSERT INTO 
-    account(account_name, account_number, account_bank)
-    VALUES 
-    (?,?,?);
-    `
-    try{
-        db.run(sql, [arg.accountN, arg.accountNu, arg.accountB], (err) =>{
-            console.log(err);
-            mainWindow.send(ADD_ACCOUNT_ERROR, {
-                sucess: false,
-                message: 'Account Already Exists',
-            })
-        })
-    }catch(err){
-        console.log(err);
-    }
-})
+// IPC Routes for Front-End > DB Data.
+ipcMain.on(ADD_NEW_ACCOUNT, (event, data) => addAccount(event, data));
+ipcMain.on(GET_ACCOUNTS, (event, data) => getAccounts(event, data));
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
@@ -97,6 +83,5 @@ app.on('activate', function () {
         createWindow()
     }
 });
-
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.

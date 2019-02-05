@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 
+import "react-table/react-table.css";
 import rootReducer from './reducers/rootReducer';
 import initialState from './reducers/intialState';
 import App from './App';
