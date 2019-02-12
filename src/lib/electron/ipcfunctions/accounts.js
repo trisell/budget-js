@@ -1,11 +1,10 @@
-const mainWindow = require('../../../electron-starter.js').mainWindow;
-
 const { db } = require('../../../utils/db');
 
 const { 
   ADD_ACCOUNT_ERROR,
   RETURN_ALL_ACCOUNTS
 } = require('../ipcConstants');
+
 const addAccount = (event,arg) => {
   const sql = `
   INSERT INTO 

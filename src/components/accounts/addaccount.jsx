@@ -35,7 +35,6 @@ class AddAccount extends Component {
     ipcRenderer.on(ADD_ACCOUNT_ERROR, this.handleError);
   }
   handleError = (event, data) => {
-    console.log(data);
     this.setState({error: data.message});
   }
   render() {
