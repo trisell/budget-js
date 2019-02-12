@@ -8,8 +8,6 @@ import {
   GET_ACCOUNTS, 
   RETURN_ALL_ACCOUNTS 
 } from '../../lib/electron/ipcConstants';
-
-
 const { ipcRenderer } = window.require('electron');
 
 class Accounts extends Component {
