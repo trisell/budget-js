@@ -27,23 +27,8 @@ class Accounts extends Component {
     ipcRenderer.removeListener(RETURN_ALL_ACCOUNTS, () => {});
   }
 
-  getAccounts = () => {
-
-    ipcRenderer.send(GET_ACCOUNTS, 'ping');
-    ipcRenderer.on(RETURN_ALL_ACCOUNTS, (event, data) => {
-      if(data.error){
-        this.setState({error: data.error});
-      }else{
-        this.setState({
-          data: data
-        });
-      }
-    })
-  }
-  
   render() {
     const { accounts } = this.props;
-    const { data } = this.state;
     return (
         <ReactTable
           data={accounts}
@@ -74,7 +59,6 @@ class Accounts extends Component {
 }
 
 function mapStateToProps(state){
-  console.log(state);
   return {
    accounts: state.accounts
   }
