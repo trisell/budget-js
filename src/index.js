@@ -1,7 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware, } from 'redux';
 import { Provider } from 'react-redux';
+import { logger } from 'redux-logger';
+import thunk from 'redux-thunk';
 
 import "react-table/react-table.css";
 import rootReducer from './reducers/rootReducer';
@@ -11,7 +13,11 @@ import * as serviceWorker from './serviceWorker';
 
 const store = createStore(
   rootReducer,
-  initialState
+  initialState,
+  applyMiddleware(
+    logger, 
+    thunk,
+  ),
 );
 
 ReactDOM.render(
