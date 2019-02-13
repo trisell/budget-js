@@ -6,6 +6,7 @@ import Home from './components/home';
 import AddAccount from './components/accounts/addaccount';
 import Account from './components/accounts/accounts';
 import Budget from './components/budget';
+import Transactions from './components/transactions/transactions';
 
 class App extends Component {
   render() {
@@ -17,6 +18,7 @@ class App extends Component {
             <Route exact path='/accounts/add' component={AddAccount} />
             <Route exact path='/accounts' component={Account} />
             <Route exact path='/budget' component={Budget} />
+            <Route exact path='/transactions' component={Transactions} />
           </Switch>
         </HashRouter>
       </div>

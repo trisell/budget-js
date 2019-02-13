@@ -30,7 +30,7 @@ const TopMenu = (WrappedComponent) => {
         </Dropdown.Menu>
       </Dropdown>
       <Menu.Item as={Link} to='/budget'>Budget</Menu.Item>
-      <Menu.Item>Contact Us</Menu.Item>
+      <Menu.Item as={Link} to='/transactions'>Transactions</Menu.Item>
       
     </Menu>
     <div>
