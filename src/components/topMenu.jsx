@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Menu, Dropdown } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 
 const TopMenu = (WrappedComponent) => {
@@ -20,7 +19,7 @@ const TopMenu = (WrappedComponent) => {
 
     return (
       <div>
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <nav className="navbar navbar-expand-lg navbar-light bg-light" data-test-id="topMenu">
           <div className="collapse navbar-collapse" id="navbarNavDropdown">
             <ul className="navbar-nav">
               <li className="nav-item">
@@ -36,7 +35,7 @@ const TopMenu = (WrappedComponent) => {
                 </div>
               </li>
               <li className="nav-item">
-                <Link to='/budget'></Link>
+                <Link to='/budget'>Budget</Link>
               </li>
               <li className="nav-item dropdown">
                 <a className="nav-link dropdown-toggle" href="#" id="navbarTransactionsDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
