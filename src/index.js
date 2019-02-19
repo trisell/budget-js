@@ -7,8 +7,10 @@ import thunk from 'redux-thunk';
 
 import "react-table/react-table.css";
 import rootReducer from './reducers/rootReducer';
+import './static/css/bootstrap_flatly.min.css';
 import initialState from './reducers/intialState';
 import App from './App';
+import 'bootstrap/dist/js/bootstrap.bundle';
 import * as serviceWorker from './serviceWorker';
 
 const store = createStore(

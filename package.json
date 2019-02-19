@@ -3,18 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "bootstrap": "^4.3.1",
     "browserify-fs": "^1.0.0",
     "electron-reload": "^1.4.0",
-    "formik": "^1.4.3",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
+    "react-modal": "^3.8.1",
     "react-redux": "^6.0.0",
     "react-router-dom": "^4.3.1",
     "react-table": "^6.9.0",
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
-    "semantic-ui-react": "^0.85.0",
     "sqlite": "^3.0.1"
   },
   "devDependencies": {
@@ -28,7 +28,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "electron-dev": "ELECTRON_START_URL=http://localhost:3000 electron .",
+    "electron-dev": "electron ./",
     "rebuild": "electron-rebuild -f -w sqlite3"
   },
   "eslintConfig": {

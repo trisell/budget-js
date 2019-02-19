@@ -3,7 +3,7 @@ import { Menu, Dropdown } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 
 const TopMenu = (WrappedComponent) => {
-  class MenuExampleBasic extends Component {
+  class Menu extends Component {
     constructor(props) {
       super(props);
       this.state = {};
@@ -20,19 +20,35 @@ const TopMenu = (WrappedComponent) => {
 
     return (
       <div>
-      <Menu>
-      <Menu.Item as={Link} to='/'>Home</Menu.Item>
-      <Dropdown text='Accounts' pointing className='link item'>
-        <Dropdown.Menu>
-        <Dropdown.Item as={Link} to='/accounts/add'>Add Account</Dropdown.Item>
-          <Dropdown.Divider />
-          <Dropdown.Item as={Link} to='/accounts'>Account List</Dropdown.Item>
-        </Dropdown.Menu>
-      </Dropdown>
-      <Menu.Item as={Link} to='/budget'>Budget</Menu.Item>
-      <Menu.Item as={Link} to='/transactions'>Transactions</Menu.Item>
-      
-    </Menu>
+        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+          <div className="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul className="navbar-nav">
+              <li className="nav-item">
+                <Link className='nav-link' to='/'>Home</Link>
+              </li>
+              <li className="nav-item dropdown">
+              <a className="nav-link dropdown-toggle" href="#" id="navbarAccountsDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Accounts
+                </a>
+                <div className='dropdown-menu' aria-labelledby='navbarAccountsDropdown'>
+                  <Link className='dropdown-item' to='/accounts'>Account List</Link>
+                  <Link className='dropdown-item' to='/accounts/add'>Add Account</Link>
+                </div>
+              </li>
+              <li className="nav-item">
+                <Link to='/budget'></Link>
+              </li>
+              <li className="nav-item dropdown">
+                <a className="nav-link dropdown-toggle" href="#" id="navbarTransactionsDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Transactions
+                </a>
+                <div className="dropdown-menu" aria-labelledby="navbarTransactionsDropdown">
+                  <Link className="dropdown-item" to='/transactions'>Transactions</Link>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </nav>
     <div>
       <WrappedComponent />
     </div>
@@ -40,7 +56,7 @@ const TopMenu = (WrappedComponent) => {
     )
   }
 }
-  return MenuExampleBasic
+  return Menu
 }
 
 export default TopMenu;
